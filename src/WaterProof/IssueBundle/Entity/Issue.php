@@ -9,6 +9,10 @@ use WaterProof\WorkflowBundle\Workflow;
  * @ORM\HasLifecycleCallbacks
  */
 class Issue {
+    const PRIORITY_HIGH = 1;
+    const PRIORITY_NORMAL = 2;
+    const PRIORITY_LOW = 3;
+
     function __construct(){
         $this->status = Workflow::STATUS_NEW;
     }
@@ -90,14 +94,14 @@ class Issue {
     /**
      * @var string
      *
-     * @ORM\Column(name="custom1", type="string", length=255)
+     * @ORM\Column(name="custom1", type="string", length=255, nullable=true)
      */
     private $custom1;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="custom2", type="string", length=255)
+     * @ORM\Column(name="custom2", type="string", length=255, nullable=true)
      */
     private $custom2;
 

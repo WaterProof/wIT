@@ -21,7 +21,8 @@
         "friendsofsymfony/user-bundle": "~2.0@dev",
       "solilokiam/summernotebundle": "dev-master",
         "knplabs/knp-paginator-bundle": "~2.4",
-        "knplabs/knp-menu-bundle": "~2"
+        "knplabs/knp-menu-bundle": "~2",
+        "exorus/php-mime-mail-parser": "~1.7"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

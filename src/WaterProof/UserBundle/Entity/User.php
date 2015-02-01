@@ -19,27 +19,27 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     protected $first_name;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     protected $last_name;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     protected $title;
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     protected $job;
 
     /**
- * @ORM\Column(type="string")
- */
+     * @ORM\Column(type="string", nullable=true)
+     */
     protected $avatar;
 
     public function __construct()
@@ -48,15 +48,16 @@ class User extends BaseUser
         // your own logic
     }
 
-    public function getFullName(){
+    public function getFullName()
+    {
         $items = array();
-        if($this->title){
+        if ($this->title) {
             $items[] = $this->title;
         }
-        if($this->first_name){
+        if ($this->first_name) {
             $items[] = $this->first_name;
         }
-        if($this->last_name){
+        if ($this->last_name) {
             $items[] = $this->last_name;
         }
         return implode(' ', $items);
@@ -65,7 +66,7 @@ class User extends BaseUser
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -88,7 +89,7 @@ class User extends BaseUser
     /**
      * Get first_name
      *
-     * @return string 
+     * @return string
      */
     public function getFirstName()
     {
@@ -111,7 +112,7 @@ class User extends BaseUser
     /**
      * Get last_name
      *
-     * @return string 
+     * @return string
      */
     public function getLastName()
     {
@@ -134,7 +135,7 @@ class User extends BaseUser
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -157,7 +158,7 @@ class User extends BaseUser
     /**
      * Get job
      *
-     * @return string 
+     * @return string
      */
     public function getJob()
     {
@@ -180,7 +181,7 @@ class User extends BaseUser
     /**
      * Get avatar
      *
-     * @return string 
+     * @return string
      */
     public function getAvatar()
     {
