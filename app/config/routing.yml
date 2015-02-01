@@ -1,0 +1,50 @@
+water_proof_settings:
+    resource: "@WaterProofSettingsBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+water_proof_workflow:
+    resource: "@WaterProofWorkflowBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+water_proof_asset:
+    resource: "@WaterProofAssetBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+water_proof_timeline:
+    resource: "@WaterProofTimelineBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+water_proof_pin_board:
+    resource: "@WaterProofPinBoardBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+water_proof_issue:
+    resource: "@WaterProofIssueBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+water_proof_dashboard:
+    resource: "@WaterProofDashboardBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+water_proof_user:
+    resource: "@WaterProofUserBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+app:
+    resource: @AppBundle/Controller/
+    type:     annotation
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+#solilokiam_summernote_bundle:
+#    resource: "@SolilokiamSummernoteBundle/Resources/config/routing.xml"
+#    prefix: /summernote

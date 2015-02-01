@@ -1,0 +1,27 @@
+{% extends 'AppBundle:Default:layout.html.twig' %}
+
+{% block page_title %}Settings{% endblock %}
+
+{% block breadcrumb %}
+    <ol class="breadcrumb">
+        <li>
+            <a href="{{ path('dashboard') }}">{% trans %}Home{% endtrans %}</a>
+        </li>
+        <li class="active">
+            <strong>{% trans %}Settings{% endtrans %}</strong>
+        </li>
+    </ol>
+{% endblock %}
+
+{% block header_action %}
+    {#
+    <div class="title-action">
+        <a href="{{ path('pin_create') }}" class="btn btn-primary">{% trans %}Add a new pin{% endtrans %}</a>
+    </div>
+    #}
+{% endblock %}
+
+{% block body %}
+    Settings
+{% endblock %}
+

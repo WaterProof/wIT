@@ -1,0 +1,100 @@
+{% extends 'AppBundle:Default:layout.html.twig' %}
+
+{% set paginationData = pagination.getPaginationData %}
+
+{% block page_title %}
+    Issues
+    {% if paginationData.totalCount > 0 %}
+        <small>
+        - Displaying {{ paginationData.firstItemNumber }} to {{ paginationData.lastItemNumber}} of {{ paginationData.totalCount }} issue{% if paginationData.totalCount > 1 %}s{% endif %}.
+        </small>
+    {% endif %}
+{% endblock %}
+
+{% block breadcrumb %}
+    <ol class="breadcrumb">
+        <li>
+            <a href="{{ path('dashboard') }}">{% trans %}Home{% endtrans %}</a>
+        </li>
+        <li class="active">
+
+            <strong>{% trans %}Issues{% endtrans %}</strong>
+
+        </li>
+    </ol>
+{% endblock %}
+
+{% block header_action %}
+
+    <div class="title-action">
+        <a href="{{ path('issue_create') }}" class="btn btn-primary">Create issue</a>
+    </div>
+
+{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+
+                <div class="ibox-content">
+
+                    {% if pagination.getTotalItemCount == 0 %}
+                        <p>No issues.</p>
+                    {% else %}
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>{{ knp_pagination_sortable(pagination, 'Id', 'i.id') }}</th>
+                                    <th{% if pagination.isSorted('i.title') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Title', 'i.title') }}</th>
+                                    <th{% if pagination.isSorted('i.owner') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Reporter', 'i.owner') }}</th>
+                                    <th{% if pagination.isSorted('i.assignee') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Responsible', 'i.assignee') }}</th>
+                                    <th{% if pagination.isSorted('i.status') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Status', 'i.status') }}</th>
+                                    <th{% if pagination.isSorted('i.priority') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Priority', 'i.priority') }}</th>
+                                    <th{% if pagination.isSorted('i.updatedAt') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Updated', 'i.updatedAt') }}</th>
+                                    <th{% if pagination.isSorted('i.createdAt') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Created', 'i.createdAt') }}</th>
+                                    <th{% if pagination.isSorted('i.deadlineAt') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Deadline', 'i.deadlineAt') }}</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for issue in pagination %}
+                                    <tr class="{% if loop.index is odd %}color{% endif %}{% if issue.closedAt %}fixed{% endif %}">
+                                        <td><input type="checkbox" class="i-checks" name="issues[{{ issue.id }}]"></td>
+                                        <td><a href="{{ path('issue_show', {'id': issue.id}) }}">{{ issue.id|format_issue_id}}</a></td>
+                                        <td><a href="{{ path('issue_show', {'id': issue.id}) }}">{{ issue.title }}</a></td>
+                                        <td>{{ issue.owner }}</td>
+                                        <td>{% if issue.assignee %}{{ issue.assignee }}{% else %}-{% endif %}</td>
+                                        <td>{{ issue.status|format_status }}</td>
+                                        <td>{{ issue.priority|format_priority }}</td>
+                                        <td>{{ issue.updatedAt|format_date_short }}</td>
+                                        <td>{{ issue.createdAt|format_date_short }}</td>
+                                        <td>{% if issue.deadlineAt %}
+                                                {{ issue.deadlineAt|format_date_relative }}
+                                            {% else %}
+                                                -
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            <a href="{{ path('issue_edit', {'id': issue.id}) }}"
+                                               class="btn btn-xs btn-default">Edit</a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="navigation">
+                            {{ knp_pagination_render(pagination) }}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+

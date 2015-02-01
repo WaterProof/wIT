@@ -1,0 +1,139 @@
+{% extends 'AppBundle:Default:layout.html.twig' %}
+
+{% block page_title %}{{ issue.id|format_issue_id }} {{ issue.title }}{% endblock %}
+
+{% block breadcrumb %}
+    <ol class="breadcrumb">
+        <li>
+            <a href="{{ path('issues') }}">Issues</a>
+        </li>
+        <li class="active">
+            <strong>View issue</strong>
+        </li>
+    </ol>
+
+{% endblock %}
+
+{% block header_action %}
+
+    <div class="title-action">
+        <a href="{{ path('issue_edit', {'id': issue.id}) }}" class="btn btn-primary">Edit issue</a>
+    </div>
+
+{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Content</h5>
+                </div>
+                <div class="ibox-content">
+                    {{ issue.content|raw }}
+                </div>
+            </div>
+
+            <div class="ibox float-e-margins">
+
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#tab-1">Comments</a></li>
+                        <li class=""><a data-toggle="tab" href="#tab-2">Attachments</a></li>
+                        <li class=""><a data-toggle="tab" href="#tab-3">Timeline</a></li>
+                    </ul>
+                <div class="ibox-content">
+                    <div class="tab-content">
+                        <div id="tab-1" class="tab-pane active">
+                            Tab 1
+                        </div>
+
+                        <div id="tab-2" class="tab-pane">
+                            Tab 2
+                        </div>
+
+                        <div id="tab-3" class="tab-pane">
+                            Tab 3
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Attributes</h5>
+                </div>
+                <div class="ibox-content no-padding">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <span class="pull-right">{{ issue.status|format_status }}</span>
+                            Status
+                        </li>
+                        <li class="list-group-item">
+                            <span class="pull-right">{{ issue.priority|format_priority }}</span>
+                            Priority
+                        </li>
+                        <li class="list-group-item">
+                            <span class="pull-right">{{ issue.owner }}</span>
+                            Reporter
+                        </li>
+                        <li class="list-group-item">
+                            <span class="pull-right">{{ issue.assignee }}</span>
+                            Responsible
+                        </li>
+                        <li class="list-group-item">
+                            <span class="pull-right">{{ issue.custom1 }}</span>
+                            N° prog. ICR
+                        </li>
+                        <li class="list-group-item">
+                            <span class="pull-right">{{ issue.custom2 }}</span>
+                            N° OASYS
+                        </li>
+                        <li class="list-group-item">
+                            <span class="pull-right">{{ issue.createdAt|format_date_long }}</span>
+                            Created
+                        </li>
+                        <li class="list-group-item">
+                            <span class="pull-right">{{ issue.updatedAt|format_date_long }}</span>
+                            Updated
+                        </li>
+                        <li class="list-group-item">
+                                <span class="pull-right">{% if issue.deadlineAt %}
+                                    {{ issue.deadlineAt|format_date_relative }}
+                                {% else %}
+                                        -
+                                    {% endif %}</span>
+                            Deadline
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Actions
+                </div>
+                <div class="panel-body">
+                    <a href="{{ path('issue_edit', {'id': issue.id}) }}" class="btn btn-primary">Edit</a>
+                    <a href="{{ path('issue_delete', {'id': issue.id}) }}" class="btn btn-danger pull-right">Delete</a>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}
+
+    {% block stylesheets %}
+        {{ parent() }}
+    {% endblock %}
+
+    {% block javascripts %}
+        {{ parent() }}
+
+    {% endblock %}
+
+

@@ -1,0 +1,124 @@
+{% extends 'AppBundle:Default:layout.html.twig' %}
+
+{% block page_title %}New Issue{% endblock %}
+
+{% block breadcrumb %}
+    <ol class="breadcrumb">
+        <li>
+            <a href="{{ path('issues') }}">Issues</a>
+        </li>
+        <li class="active">
+            <strong>New issue</strong>
+        </li>
+    </ol>
+
+{% endblock %}
+
+{% block body %}
+    {{ form_start(form) }}
+    {{ form_errors(form) }}
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="ibox float-e-margins">
+
+                <div class="ibox-content">
+                    {{ form_row(form.title) }}
+                    {{ form_row(form.content) }}
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="ibox float-e-margins">
+
+                <div class="ibox-content">
+                    {{ form_row(form.deadlineAt) }}
+                    {{ form_row(form.priority) }}
+                    {{ form_row(form.custom1) }}
+                    {{ form_row(form.custom2) }}
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class=" form-actions">
+                <div class="form-group">
+                    {{ form_widget(form.save) }}
+                    <a href="{{ path('issues') }}" class="btn btn-white" type="submit">Cancel</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}
+
+{% block stylesheets %}
+    <link href="{{ asset('css/plugins/summernote/summernote.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/plugins/summernote/summernote-bs3.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/plugins/nouslider/jquery.nouislider.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/plugins/datapicker/datepicker3.css') }}" rel="stylesheet">
+
+    <link href="{{ asset('css/plugins/ionRangeSlider/ion.rangeSlider.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/plugins/ionRangeSlider/ion.rangeSlider.skinFlat.css') }}" rel="stylesheet">
+    {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="{{ asset('js/plugins/datapicker/bootstrap-datepicker.js') }}"></script>
+    <script src="{{ asset('js/plugins/summernote/summernote.min.js') }}"></script>
+    <script src="{{ asset('js/plugins/nouslider/jquery.nouislider.min.js') }}"></script>
+    <script src="{{ asset('js/plugins/ionRangeSlider/ion.rangeSlider.min.js') }}"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('.summernoteTextArea').each(function () {
+                var $textArea = $(this);
+
+                $textArea.summernote({
+                    onkeyup: function (e) {
+                        $textArea.val($(this).code());
+                        $textArea.change(); //To update any action binded on the control
+                    }
+                });
+            });
+
+            $('.input-group.date').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true
+            });
+
+//            $("#ionrange_1").ionRangeSlider({
+//                values: [
+//                    "Trivial", "Low", "Medium", "High", "Critical"
+//                ],
+//                type: 'single',
+//                hasGrid: true
+//            });
+//
+//            var config = {
+//                '.chosen-select': {},
+//                '.chosen-select-deselect': {allow_single_deselect: true},
+//                '.chosen-select-no-single': {disable_search_threshold: 10},
+//                '.chosen-select-no-results': {no_results_text: 'Oops, nothing found!'},
+//                '.chosen-select-width': {width: "95%"}
+//            }
+//            for (var selector in config) {
+//                $(selector).chosen(config[selector]);
+//            }
+        });
+
+    </script>
+
+{% endblock %}
+
+

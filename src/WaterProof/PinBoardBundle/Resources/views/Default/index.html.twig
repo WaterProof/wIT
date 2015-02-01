@@ -1,0 +1,42 @@
+{% extends 'AppBundle:Default:layout.html.twig' %}
+
+{% block page_title %}Pin Board{% endblock %}
+
+{% block breadcrumb %}
+    <ol class="breadcrumb">
+        <li>
+            <a href="{{ path('dashboard') }}">{% trans %}Home{% endtrans %}</a>
+        </li>
+        <li class="active">
+            <strong>{% trans %}Pin Board{% endtrans %}</strong>
+        </li>
+    </ol>
+{% endblock %}
+
+{% block header_action %}
+<div class="title-action">
+    <a href="{{ path('pin_create') }}" class="btn btn-primary">{% trans %}Add a new pin{% endtrans %}</a>
+</div>
+{% endblock %}
+
+{% block body %}
+    {% if pins %}
+    <div class="wrapper wrapper-content animated fadeInUp">
+        <ul class="notes">
+            {% for pin in pins %}
+            <li>
+                <div>
+                    <small>{{ pin.createdAt.format('d/m/Y H:i') }}</small>
+                    <h4>{{ pin.title }}</h4>
+                    {{ pin.content|raw }}
+                    <a href="{{ path('pin_delete', {'id': pin.id}) }}" class="action-delete"><i class="fa fa-trash-o "></i></a>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% else %}
+        <p>{% trans %}You currently have no pin.{% endtrans %} <a href="{{ path('pin_create') }}">{% trans %}Add a new pin{% endtrans %}</a>.</p>
+{% endif %}
+{% endblock %}
+

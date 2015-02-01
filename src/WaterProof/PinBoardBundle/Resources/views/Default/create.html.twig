@@ -1,0 +1,64 @@
+{% extends 'AppBundle:Default:layout.html.twig' %}
+
+{% block page_title %}Create a new pin{% endblock %}
+
+{% block breadcrumb %}
+    <ol class="breadcrumb">
+        <li>
+            <a href="{{ path('dashboard') }}">{% trans %}Home{% endtrans %}</a>
+        </li>
+        <li>
+            <a href="{{ path('pin_index') }}">{% trans %}Pin Board{% endtrans %}</a>
+        </li>
+        <li class="active">
+            <strong>{% trans %}Create{% endtrans %}</strong>
+        </li>
+    </ol>
+{% endblock %}
+
+{% block header_action %}
+{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                {{ form(form) }}
+            </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block stylesheets %}
+    <link href="{{ asset('css/plugins/summernote/summernote.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/plugins/summernote/summernote-bs3.css') }}" rel="stylesheet">
+    {{ parent() }}
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="{{ asset('js/plugins/summernote/summernote.min.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            $('.summernoteTextArea').each(function () {
+                var $textArea = $(this);
+
+                $textArea.summernote({
+                    onkeyup: function (e) {
+                        $textArea.val($(this).code());
+                        $textArea.change(); //To update any action binded on the control
+                    }
+                });
+            });
+
+        });
+
+    </script>
+
+
+{% endblock %}

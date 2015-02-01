@@ -1,0 +1,33 @@
+.note-editor{
+    min-height: 300px;
+    height: auto;
+    border: 1px solid #e5e6e7;
+    border-radius: 1px;
+}
+
+.note-editor .note-editable {
+    min-height: 250px;
+}
+
+ul.notes li div {
+    height: auto;
+    min-height: 210px;
+}
+
+ul.notes li div a.action-delete {
+    bottom: 10px;
+    color: inherit;
+    position: absolute;
+    right: 10px;
+}
+
+ul.notes li div a {
+    position: inherit;
+    right: auto;
+    bottom: auto;
+    color: inherit;
+}
+
+tr.fixed td{
+    text-decoration: line-through;
+}

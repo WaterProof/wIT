@@ -1,0 +1,220 @@
+{% extends 'AppBundle:Default:layout.html.twig' %}
+
+{% block page_title %}{% trans %}Dashboard{% endtrans %}{% endblock %}
+
+{% block breadcrumb %}
+    {#
+        <ol class="breadcrumb">
+            <li>
+                <a href="index.html">This is</a>
+            </li>
+            <li class="active">
+                <strong>Breadcrumb</strong>
+            </li>
+        </ol>
+    #}
+{% endblock %}
+
+
+{% block body %}
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    {#<span class="label label-success pull-right">Monthly</span>#}
+                    <h5>New issues</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="pull-right" style="margin-top: 8px"><span id="sparkline2"></span></div>
+                    <h1 class="no-margins">{{ stats.new }}</h1>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    {#<span class="label label-info pull-right">Annual</span>#}
+                    {% if stats.pending.hot %}
+                        <span class="badge badge-danger pull-right">{{ stats.pending.hot }}</span>
+                    {% endif %}
+                    <h5>Pending issues</h5>
+                </div>
+                <div class="ibox-content">
+
+                    <h1 class="no-margins">
+                        {{ stats.pending.total }}
+
+                    </h1>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    {% if stats.delegated.hot %}
+                        <span class="badge badge-danger pull-right">{{ stats.delegated.hot }}</span>
+                    {% endif %}
+                    <h5>Delegated issues</h5>
+                </div>
+                <div class="ibox-content">
+                    <h1 class="no-margins">{{ stats.delegated.total }}</h1>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <span class="label label-primary pull-right">This month</span>
+                    <h5>Closed issues</h5>
+                </div>
+                <div class="ibox-content">
+                    <h1 class="no-margins">{{ stats.closed }}</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Latest activity</h5>
+                    {#
+                    <div class="ibox-tools">
+                        <span class="label label-warning-light">10 Messages</span>
+                    </div>
+                    #}
+                </div>
+                <div class="ibox-content">
+
+                    <div>
+                        <div class="feed-activity-list">
+
+                            <div class="feed-element">
+                                <a href="profile.html" class="pull-left">
+                                    <img alt="image" class="img-circle" src="img/profile.jpg">
+                                </a>
+
+                                <div class="media-body ">
+                                    <small class="pull-right">5m ago</small>
+                                    <strong>Monica Smith</strong> created issue <a href="#">#212132 Lorem ipsum</a>.
+                                    <br>
+                                    <small class="text-muted">Today 5:60 pm - 12.06.2014</small>
+
+                                </div>
+                            </div>
+
+                            <div class="feed-element">
+                                <a href="profile.html" class="pull-left">
+                                    <img alt="image" class="img-circle" src="img/a2.jpg">
+                                </a>
+
+                                <div class="media-body ">
+                                    <small class="pull-right">2h ago</small>
+                                    <strong>Mark Johnson</strong> posted on issue <a href="#">#21222 Lorem
+                                        ipsum</a>. <br>
+                                    <small class="text-muted">Today 2:10 pm - 12.06.2014</small>
+                                    <div class="well">
+                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+                                        Ipsum has been the industry's standard dummy text ever since the 1500s.
+                                        Over the years, sometimes by accident, sometimes on purpose (injected humour and
+                                        the like).
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <button class="btn btn-primary btn-block m-t"><i class="fa fa-arrow-down"></i> Show More
+                        </button>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Hotest issues</h5>
+                    {#
+                                           <div class="ibox-tools">
+
+                                               <a class="collapse-link">
+                                                   <i class="fa fa-chevron-up"></i>
+                                               </a>
+
+                                               <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                                   <i class="fa fa-wrench"></i>
+                                               </a>
+
+                                               <ul class="dropdown-menu dropdown-user">
+                                                   <li><a href="#">Config option 1</a>
+                                                   </li>
+                                                   <li><a href="#">Config option 2</a>
+                                                   </li>
+                                               </ul>
+                                               <a class="close-link">
+                                                   <i class="fa fa-times"></i>
+                                               </a>
+                                           </div>
+                                           #}
+                </div>
+                <div class="ibox-content no-padding">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <span class="label label-danger pull-right">Today</span>
+
+                            <p><a class="text-info" href="#">#232324</a> Lorem ipsum dolor sit amet.</p>
+                            <small class="block text-muted"><i class="fa fa-clock-o"></i> Created 5 days ago -
+                                13.01.2015 20:45
+                            </small>
+                        </li>
+                        <li class="list-group-item">
+                            <span class="label label-danger pull-right">Today</span>
+
+                            <p><a class="text-info" href="#">#232324</a> Lorem ipsum dolor sit amet.</p>
+                            <small class="block text-muted"><i class="fa fa-clock-o"></i> Created 5 days ago -
+                                13.01.2015 20:45
+                            </small>
+                        </li>
+                        <li class="list-group-item">
+                            <span class="label label-warning pull-right">Tommorrow</span>
+
+                            <p><a class="text-info" href="#">#232324</a> Lorem ipsum dolor sit amet.</p>
+                            <small class="block text-muted"><i class="fa fa-clock-o"></i> Created 5 days ago -
+                                13.01.2015 20:45
+                            </small>
+                        </li>
+                        <li class="list-group-item">
+                            <span class="label label-info pull-right">This week</span>
+
+                            <p><a class="text-info" href="#">#232324</a> Lorem ipsum dolor sit amet.</p>
+                            <small class="block text-muted"><i class="fa fa-clock-o"></i> Created 5 days ago -
+                                13.01.2015 20:45
+                            </small>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="/js/plugins/sparkline/jquery.sparkline.min.js"></script>
+    <script>
+        $(function () {
+            $("#sparkline2").sparkline([5, 6, 7, 2, 0, -4, -2, 4], {
+                type: 'bar',
+                barColor: '#1ab394',
+                negBarColor: '#c6c6c6'
+            });
+
+        })
+    </script>
+{% endblock %}
